@@ -6,7 +6,7 @@
 #
 #-----------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -41,7 +41,6 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 find_package(Osmium 2.14.2 REQUIRED COMPONENTS io)
 include_directories(${OSMIUM_INCLUDE_DIRS})
-
 
 #-----------------------------------------------------------------------------
 #
@@ -183,3 +182,11 @@ enable_testing()
 add_subdirectory(test)
 
 #-----------------------------------------------------------------------------
+
+include(FetchContent)
+
+FetchContent_Declare(
+  fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt
+  GIT_TAG        3e75ad9822980e41bc591938f26548f24eb88907) # 5.2.1
+FetchContent_MakeAvailable(fmt)
